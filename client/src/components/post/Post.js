@@ -9,12 +9,10 @@ import CommentItem from "./CommentItem";
 
 import PropTypes from "prop-types";
 
-import { get } from "mongoose";
-
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getPost(match.params.id);
-  }, [getPost]);
+  }, [getPost, match.params.id]);
   return loading || post === null ? (
     <Spinner />
   ) : (
