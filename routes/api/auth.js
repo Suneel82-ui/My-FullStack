@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../../../middleware/auth");
-const User = require("../../../models/User");
+const auth = require("../../middleware/auth");
+const User = require("../../models/User");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
@@ -28,7 +28,7 @@ router.post(
   "/",
   [
     check("email", "Please include a valid email").isEmail(),
-    check("password", "Please is required").exists()
+    check("password", "Please is required").exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -56,8 +56,8 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,
